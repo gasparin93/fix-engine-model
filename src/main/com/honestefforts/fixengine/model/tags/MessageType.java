@@ -1,4 +1,4 @@
-package com.honestefforts.fixengine.model;
+package com.honestefforts.fixengine.model.tags;
 
 public enum MessageType {
     HEARTBEAT("0", "Heartbeat <0>", false),
@@ -14,7 +14,7 @@ public enum MessageType {
     LOGON("A", "Logon <A>", false),
     NEWS("B", "News <B>", false),
     EMAIL("C", "Email <C>", false),
-    NEW_ORDER_SINGLE("D", "New Order Single <D>", false),
+    NEW_ORDER_SINGLE("D", "New Order Single <D>", true),
     NEW_ORDER_LIST("E", "New Order List <E>", false),
     ORDER_CANCEL_REQUEST("F", "Order Cancel Request <F>", false),
     ORDER_CANCEL_REPLACE_REQUEST("G", "Order Cancel/Replace Request <G>", false),
