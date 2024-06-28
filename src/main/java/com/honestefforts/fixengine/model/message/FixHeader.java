@@ -9,19 +9,20 @@ import java.time.Instant;
 @Value
 @Builder
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-class FixHeader {
-    @NonNull
-    BeginString version;
-    @NonNull
-    Integer checkSum;
-    @NonNull
-    MessageType messageType;
-    @NonNull
-    String senderCompID;
-    @NonNull
-    String targetCompID;
-    @NonNull
-    Integer msgSeqNum;
-    @NonNull
-    Instant sendingTime;
+public class FixHeader {
+
+  @NonNull
+  BeginString version;
+  @NonNull
+  Integer checkSum;
+  @NonNull
+  MessageType messageType;
+  @NonNull
+  String senderCompID;
+  @NonNull
+  String targetCompID;
+  @NonNull
+  Integer msgSeqNum;
+  @NonNull
+  Instant sendingTime;
 }
