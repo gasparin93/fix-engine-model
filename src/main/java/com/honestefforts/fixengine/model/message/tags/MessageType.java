@@ -1,5 +1,10 @@
-package com.honestefforts.fixengine.model.tags;
+package com.honestefforts.fixengine.model.message.tags;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@Getter
+@AllArgsConstructor
 public enum MessageType {
     HEARTBEAT("0", "Heartbeat <0>", false),
     TEST_REQUEST("1", "Test Request <1>", false),
@@ -49,13 +54,8 @@ public enum MessageType {
     LIST_STRIKE_PRICE("m", "List Strike Price <m>", false),
     XML_MESSAGE("n", "XML message <n> (e.g. non-FIX MsgType)", false);
 
-    public final String tag;
-    public final String description;
-    public final boolean supported;
+    private final String tag;
+    private final String description;
+    private final boolean supported;
 
-    MessageType(String tag, String description, boolean supported) {
-        this.tag = tag;
-        this.description = description;
-        this.supported = supported;
-    }
 }
