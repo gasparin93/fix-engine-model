@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 //TODO: abstract this into a table within a data provider service - iso-data-provider for all iso-derived values?
-//TODO: this should not be an enum, it should be a record, MarketIdentification, with all fields from CSV
+//TODO: this should not be an enum, it should be a class or record, MarketIdentification, with all fields from CSV
 //TODO: have an additional service running on cron that upkeeps ISO values for data provider
 //TODO: once data provider is in, replace instances of this with record
 //most values removed for simplicity until data service is created, only first few supported
