@@ -3,6 +3,7 @@ package com.honestefforts.fixengine.model.message.tags;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+//TODO: this field can contain multiple instructions separated by space
 @Getter
 @AllArgsConstructor
 public enum ExecutionInstructions {
