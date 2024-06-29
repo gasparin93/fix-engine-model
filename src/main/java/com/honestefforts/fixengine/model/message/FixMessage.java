@@ -1,8 +1,12 @@
 package com.honestefforts.fixengine.model.message;
 
-import lombok.NonNull;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.experimental.SuperBuilder;
 
-public interface FixMessage {
-  @NonNull
-  FixHeader fixHeader = null;
+@AllArgsConstructor
+@Getter
+@SuperBuilder
+public abstract class FixMessage {
+  private final FixHeader fixHeader;
 }

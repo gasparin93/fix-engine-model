@@ -1,25 +1,23 @@
 package com.honestefforts.fixengine.model.message;
 
-import com.honestefforts.fixengine.model.message.tags.BeginString;
-import com.honestefforts.fixengine.model.message.tags.MessageType;
+import com.honestefforts.fixengine.model.message.tags.HandlingInstructions;
 import com.honestefforts.fixengine.model.message.tags.OrderType;
 import com.honestefforts.fixengine.model.message.tags.Side;
 import java.time.Instant;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.NonNull;
 import lombok.Value;
+import lombok.experimental.SuperBuilder;
 
+@EqualsAndHashCode(callSuper = true)
 @Value
-@Builder
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class NewOrderSingle implements FixMessage {
+@SuperBuilder
+public class NewOrderSingle extends FixMessage {
 
   @NonNull
   String clordid;
   @NonNull
-  String handlingInstructions;
+  HandlingInstructions handlingInstructions;
   @NonNull
   String symbol;
   @NonNull
@@ -28,5 +26,7 @@ public class NewOrderSingle implements FixMessage {
   Instant transactTime;
   @NonNull
   OrderType orderType;
+
+  NewOrderSingleOptionalFields optionalFields;
 
 }

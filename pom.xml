@@ -8,11 +8,11 @@
 		<version>3.3.1</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.honesefforts</groupId>
+	<groupId>com.honestefforts</groupId>
 	<artifactId>fixengine.model</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>fixengine.model</name>
-	<description>Demo project for Spring Boot</description>
+	<description>FIX Engine Model and Utilities Library</description>
 	<url/>
 	<licenses>
 		<license/>

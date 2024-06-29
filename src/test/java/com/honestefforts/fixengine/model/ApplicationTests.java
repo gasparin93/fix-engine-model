@@ -1,4 +1,4 @@
-package com.honesefforts.fixengine.model;
+package com.honestefforts.fixengine.model;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
