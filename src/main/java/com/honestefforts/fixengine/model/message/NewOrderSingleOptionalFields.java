@@ -25,5 +25,4 @@ public class NewOrderSingleOptionalFields {
   LocalDate expireDate;
   LocalDateTime expireTime;
 
-
 }
