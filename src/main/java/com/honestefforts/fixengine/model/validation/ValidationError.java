@@ -8,6 +8,7 @@ import lombok.Builder;
 @Builder
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class ValidationError {
+
   private final String error;
   private final RawTag submittedTag;
   @Builder.Default
