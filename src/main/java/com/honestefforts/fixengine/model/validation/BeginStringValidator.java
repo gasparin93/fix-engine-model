@@ -44,4 +44,8 @@ public class BeginStringValidator implements Validator {
         .orElse(false);
   }
 
+  public static boolean isVersionNotSupported(String tag) {
+    return !isVersionSupported(tag);
+  }
+
 }

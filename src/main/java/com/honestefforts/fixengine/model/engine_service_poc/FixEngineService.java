@@ -1,8 +1,8 @@
 package com.honestefforts.fixengine.model.engine_service_poc;
 
 import com.honestefforts.fixengine.model.message.tags.RawTag;
-import com.honestefforts.fixengine.model.request.FixMessageRequestV1;
-import java.util.Arrays;
+import com.honestefforts.fixengine.model.endpoint.request.FixMessageRequestV1;
+import com.honestefforts.fixengine.model.validation.BeginStringValidator;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -11,13 +11,15 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
-import java.util.function.Function;
 import java.util.stream.IntStream;
 import lombok.NonNull;
 
 //TODO: handle resiliency, have more standardized logging for errors
 public class FixEngineService {
-  public static List<Map<String, RawTag>> process(@NonNull FixMessageRequestV1 request) {
+  public static FixMessageResponseV1 process(@NonNull FixMessageRequestV1 request) {
+    if(BeginStringValidator.isVersionNotSupported(request.getVersion())) {
+      return null; //TODO: define what we're returning here
+    }
     ExecutorService executor = Executors.newVirtualThreadPerTaskExecutor();
     return request.getFixMessages().stream()
         .map(msg -> executor.submit(() -> 
@@ -25,7 +27,8 @@ public class FixEngineService {
         .map(FixEngineService::getRawTagMap)
         .onClose(executor::shutdown)
         .filter(Objects::nonNull)
-        .toList();
+        .map(t-> FixMessageResponseV1.builder().response(List.of()).build()).toList().get(0); //TODO: see previous todo
+        //.toList();
   }
 
   private static Map<String, RawTag> getRawTagMap(Future<Map<String, RawTag>> future) {
@@ -90,8 +93,8 @@ public class FixEngineService {
         "8=FIX.4.4|9=177|35=D|34=20|49=CLIENT12|52=20230628-12:30:41|56=BROKER12|11=13597|21=1|55=SQ|54=1|60=20230628-12:30:41|38=45|40=2|44=220.50|10=175|",
         "8=FIX.4.4|9=178|35=D|34=21|49=CLIENT12|52=20230628-12:30:43|56=BROKER12|11=13598|21=1|55=PYPL|54=2|60=20230628-12:30:43|38=60|40=2|44=270.25|10=176|"
     )).build();
-    process(request)
-        .forEach(System.out::println);
+    /*process(request)
+        .forEach(System.out::println);*/
     ;
   }
 }

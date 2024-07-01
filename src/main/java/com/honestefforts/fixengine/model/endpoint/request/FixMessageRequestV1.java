@@ -1,4 +1,4 @@
-package com.honestefforts.fixengine.model.request;
+package com.honestefforts.fixengine.model.endpoint.request;
 
 import java.util.List;
 import lombok.AccessLevel;
