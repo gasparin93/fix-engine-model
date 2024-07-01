@@ -19,5 +19,9 @@ public class FixMessageRequestV1 {
   String delimiter = "\\|";
 
   @NonNull
+  @Builder.Default
+  String version = "4.4";
+
+  @NonNull
   List<String> fixMessages;
 }

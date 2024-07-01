@@ -6,7 +6,8 @@ import java.util.Optional;
 
 public class MessageTypeValidator implements Validator {
 
-  private static final Map<String, Boolean> acceptedValues = Map.ofEntries(
+  //tag, isSupported
+  private static final Map<String, Boolean> acceptedValues = Map.<String, Boolean>ofEntries(
       Map.entry("0", false),  //Heartbeat <0>
       Map.entry("1", false),  //Test Request <1>
       Map.entry("2", false),  //Resend Request <2>
@@ -20,7 +21,7 @@ public class MessageTypeValidator implements Validator {
       Map.entry("A", false),  //Logon <A>
       Map.entry("B", false),  //News <B>
       Map.entry("C", false),  //Email <C>
-      Map.entry("D", true),  //New Order Single <D>
+      Map.entry("D", true),   //New Order Single <D>
       Map.entry("E", false),  //New Order List <E>
       Map.entry("F", false),  //Order Cancel Request <F>
       Map.entry("G", false),  //Order Cancel/Replace Request <G>
@@ -108,6 +109,8 @@ public class MessageTypeValidator implements Validator {
         .map(isSupported -> isSupported ? ValidationError.empty()
             : ValidationError.builder().submittedTag(rawTag).error("Message Type is not currently supported!")
                 .build())
-        .orElse(ValidationError.builder().submittedTag(rawTag).error("Message type is not valid!").build());
+        .orElse(ValidationError.builder().critical(true).submittedTag(rawTag)
+            .error(rawTag.tag() == null ? REQUIRED_ERROR_MSG : "Message type is not valid!")
+                .build());
   }
 }

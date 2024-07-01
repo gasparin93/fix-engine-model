@@ -20,26 +20,25 @@ public class FixEngineService {
   public static List<Map<String, RawTag>> process(@NonNull FixMessageRequestV1 request) {
     ExecutorService executor = Executors.newVirtualThreadPerTaskExecutor();
     return request.getFixMessages().stream()
-        .map(msg -> executor.submit(() -> parseStringToMapVirtual(msg, request.getDelimiter())))
-        .map(getFutureMapFunction())
+        .map(msg -> executor.submit(() -> 
+            parseStringToMapVirtual(msg, request.getDelimiter(), request.getVersion())))
+        .map(FixEngineService::getRawTagMap)
         .onClose(executor::shutdown)
         .filter(Objects::nonNull)
         .toList();
   }
 
-  private static Function<Future<Map<String, RawTag>>, Map<String, RawTag>> getFutureMapFunction() {
-    return future -> {
-      try {
-        return future.get();
-      } catch (InterruptedException | ExecutionException e) {
-        e.printStackTrace();
-        return null;
-      }
-    };
+  private static Map<String, RawTag> getRawTagMap(Future<Map<String, RawTag>> future) {
+    try {
+      return future.get();
+    } catch (InterruptedException | ExecutionException e) {
+      e.printStackTrace();
+      return null;
+    }
   }
 
   public static Map<String, RawTag> parseStringToMapVirtual(@NonNull final String message,
-      @NonNull String delimiter) {
+      @NonNull final String delimiter, @NonNull final String version) {
     String[] keyValPair = message.split(delimiter);
     Map<String, RawTag> map = new ConcurrentHashMap<>();
     ExecutorService executor = Executors.newVirtualThreadPerTaskExecutor();
@@ -49,7 +48,9 @@ public class FixEngineService {
           String pair = keyValPair[index];
           String[] keyValue = pair.split("=");
           if (keyValue.length == 2) {
-            map.put(keyValue[0], RawTag.builder().position(index).tag(keyValue[0]).value(keyValue[1]).build());
+            map.put(keyValue[0],
+                RawTag.builder().position(index).tag(keyValue[0]).value(keyValue[1])
+                    .version(version).build());
           }
           return null;
         }))
