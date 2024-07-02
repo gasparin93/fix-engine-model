@@ -1,7 +1,8 @@
-package com.honestefforts.fixengine.model.engine_service_poc;
+package com.honestefforts.fixengine.model.endpoint.response;
 
 import com.honestefforts.fixengine.model.message.FixMessage;
 import com.honestefforts.fixengine.model.validation.ValidationError;
+import java.util.Collection;
 import java.util.List;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -19,5 +20,5 @@ public class FixMessageResponseV1 {
   @NonNull
   List<FixMessage> response;
 
-  List<ValidationError> errors;
+  Collection<ValidationError> errors;
 }

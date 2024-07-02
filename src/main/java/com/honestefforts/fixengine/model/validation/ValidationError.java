@@ -4,8 +4,10 @@ import com.honestefforts.fixengine.model.message.tags.RawTag;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 
 @Builder
+@Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class ValidationError {
 
@@ -15,8 +17,8 @@ public class ValidationError {
   private final boolean critical = false;
   private boolean empty = false;
 
-  public boolean isEmpty() {
-    return empty;
+  public boolean hasErrors() {
+    return !empty;
   }
 
   public static ValidationError empty() {

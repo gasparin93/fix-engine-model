@@ -113,4 +113,5 @@ public class MessageTypeValidator implements Validator {
             .error(rawTag.tag() == null ? REQUIRED_ERROR_MSG : "Message type is not valid!")
                 .build());
   }
+
 }

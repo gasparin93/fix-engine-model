@@ -1,12 +1,20 @@
 package com.honestefforts.fixengine.model.engine_service_poc;
 
+import com.honestefforts.fixengine.model.FixMessageFactory;
+import com.honestefforts.fixengine.model.converter.BusinessMessageRejectConverter;
+import com.honestefforts.fixengine.model.endpoint.response.FixMessageResponseV1;
+import com.honestefforts.fixengine.model.message.FixMessage;
 import com.honestefforts.fixengine.model.message.tags.RawTag;
 import com.honestefforts.fixengine.model.endpoint.request.FixMessageRequestV1;
 import com.honestefforts.fixengine.model.validation.BeginStringValidator;
+import com.honestefforts.fixengine.model.validation.TagValidator;
+import com.honestefforts.fixengine.model.validation.ValidationError;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -16,33 +24,79 @@ import lombok.NonNull;
 
 //TODO: handle resiliency, have more standardized logging for errors
 public class FixEngineService {
+
   public static FixMessageResponseV1 process(@NonNull FixMessageRequestV1 request) {
-    if(BeginStringValidator.isVersionNotSupported(request.getVersion())) {
+    if (BeginStringValidator.isVersionNotSupported(request.getVersion())) {
       return null; //TODO: define what we're returning here
     }
     ExecutorService executor = Executors.newVirtualThreadPerTaskExecutor();
     return request.getFixMessages().stream()
-        .map(msg -> executor.submit(() -> 
-            parseStringToMapVirtual(msg, request.getDelimiter(), request.getVersion())))
-        .map(FixEngineService::getRawTagMap)
+        .map(msg -> executor.submit(() -> processTags(msg, request.getDelimiter(),
+            request.getVersion())))
+        .flatMap(future -> {
+          try {
+            return future.get();
+          } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+            return null;
+          }
+        })
         .onClose(executor::shutdown)
         .filter(Objects::nonNull)
-        .map(t-> FixMessageResponseV1.builder().response(List.of()).build()).toList().get(0); //TODO: see previous todo
-        //.toList();
+        .toList(); //TODO: see previous todo
+    //.toList();
   }
 
   private static Map<String, RawTag> getRawTagMap(Future<Map<String, RawTag>> future) {
-    try {
-      return future.get();
-    } catch (InterruptedException | ExecutionException e) {
-      e.printStackTrace();
-      return null;
-    }
+
   }
 
-  public static Map<String, RawTag> parseStringToMapVirtual(@NonNull final String message,
+  public static FixMessageResponseV1 processTags(@NonNull final String message,
       @NonNull final String delimiter, @NonNull final String version) {
-    String[] keyValPair = message.split(delimiter);
+    ConcurrentLinkedQueue<ValidationError> validationErrors = new ConcurrentLinkedQueue<>();
+    Map<String, RawTag> map = parseMessageToMap(message.split(delimiter), version,
+        validationErrors);
+
+    return FixMessageResponseV1.builder()
+        .response(validateAndTransformTags(map, validationErrors))
+        .errors(validationErrors)
+        .build();
+  }
+
+  public static FixMessage validateAndTransformTags(Map<String, RawTag> map,
+      ConcurrentLinkedQueue<ValidationError> validationErrors) {
+    ExecutorService executor = Executors.newVirtualThreadPerTaskExecutor();
+    int initialMapSize = map.size();
+
+    map.values().stream().map(tag -> executor.submit(() ->
+            Optional.of(TagValidator.validateTag(tag, map))
+                .filter(ValidationError::hasErrors)
+                .map(validationError -> {
+                  validationErrors.add(validationError);
+                  if (validationError.isCritical()) {
+                    map.remove(tag.tag());
+                  }
+                  return null;
+                })
+                .orElse(tag)
+        ))
+        .forEach(future -> {
+          try {
+            future.get();
+          } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+          }
+        });
+    executor.shutdown();
+
+    if(initialMapSize != map.size()) { //there were critical errors
+      return BusinessMessageRejectConverter.convert(map);
+    }
+    return FixMessageFactory.create(map);
+  }
+
+  public static Map<String, RawTag> parseMessageToMap(final String[] keyValPair,
+      final String version, ConcurrentLinkedQueue<ValidationError> badlyFormattedTags) {
     Map<String, RawTag> map = new ConcurrentHashMap<>();
     ExecutorService executor = Executors.newVirtualThreadPerTaskExecutor();
 
@@ -54,6 +108,9 @@ public class FixEngineService {
             map.put(keyValue[0],
                 RawTag.builder().position(index).tag(keyValue[0]).value(keyValue[1])
                     .version(version).build());
+          } else {
+            badlyFormattedTags.add(
+                ValidationError.builder().error("Unknown tag: " + pair + "!").build());
           }
           return null;
         }))
