@@ -20,8 +20,6 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.IntStream;
 
 import lombok.NonNull;
@@ -31,30 +29,33 @@ public class FixEngineService {
 
   public static List<FixMessageResponseV1> process(@NonNull FixMessageRequestV1 request) {
     if (BeginStringValidator.isVersionNotSupported(request.getVersion())) {
-      return List.of(
-          FixMessageResponseV1.builder()
-              .response(BusinessMessageRejectConverter
-                  .generate("Provided FIX version " + request.getVersion() + " is not supported"))
-              .errors(List.of(
-                  ValidationError.builder()
-                      .critical(true)
-                      .submittedTag(RawTag.builder()
-                          .tag("[JSON] version").value(request.getVersion()).build())
-                      .build())
-              )
-              .build());
+      return getIncorrectVersionResponse(request);
     }
     ExecutorService executor = Executors.newVirtualThreadPerTaskExecutor();
-    return request.getFixMessages().stream().map(msg -> executor.submit(
-        () -> processTags(msg, request.getDelimiter(), request.getVersion()))).map(future -> {
-      try {
-        return future.get();
-      } catch (InterruptedException | ExecutionException e) {
-        e.printStackTrace();
-        return null;
-      }
-    }).onClose(executor::shutdown).filter(Objects::nonNull).toList(); //TODO: see previous todo
-    //.toList();
+    return request.getFixMessages().stream()
+        .map(msg -> executor.submit(() ->
+            processTags(msg, request.getDelimiter(), request.getVersion())))
+        .map(future -> {
+          try {
+            return future.get();
+          } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+            return null;
+          }
+        })
+        .filter(Objects::nonNull)
+        .toList();
+  }
+
+  private static List<FixMessageResponseV1> getIncorrectVersionResponse(FixMessageRequestV1 request) {
+    return List.of(
+        FixMessageResponseV1.builder()
+            .response(BusinessMessageRejectConverter
+                .generate("Provided FIX version " + request.getVersion() + " is not supported"))
+            .errors(List.of(ValidationError.builder().critical(true)
+                .submittedTag(RawTag.builder().tag("[JSON] version").value(request.getVersion()).build())
+                .build()))
+            .build());
   }
 
   public static FixMessageResponseV1 processTags(@NonNull final String message,
