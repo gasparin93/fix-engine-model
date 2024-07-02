@@ -3,7 +3,6 @@ package com.honestefforts.fixengine.model.endpoint.response;
 import com.honestefforts.fixengine.model.message.FixMessage;
 import com.honestefforts.fixengine.model.validation.ValidationError;
 import java.util.Collection;
-import java.util.List;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

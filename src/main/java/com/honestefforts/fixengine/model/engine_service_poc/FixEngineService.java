@@ -2,15 +2,14 @@ package com.honestefforts.fixengine.model.engine_service_poc;
 
 import com.honestefforts.fixengine.model.FixMessageFactory;
 import com.honestefforts.fixengine.model.converter.BusinessMessageRejectConverter;
+import com.honestefforts.fixengine.model.endpoint.request.FixMessageRequestV1;
 import com.honestefforts.fixengine.model.endpoint.response.FixMessageResponseV1;
 import com.honestefforts.fixengine.model.message.FixMessage;
 import com.honestefforts.fixengine.model.message.tags.RawTag;
-import com.honestefforts.fixengine.model.endpoint.request.FixMessageRequestV1;
 import com.honestefforts.fixengine.model.validation.BeginStringValidator;
 import com.honestefforts.fixengine.model.validation.FixHeaderValidator;
 import com.honestefforts.fixengine.model.validation.TagValidator;
 import com.honestefforts.fixengine.model.validation.ValidationError;
-
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -21,7 +20,6 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.stream.IntStream;
-
 import lombok.NonNull;
 
 //TODO: handle resiliency, have more standardized logging for errors
