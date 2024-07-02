@@ -105,7 +105,7 @@ public class MessageTypeValidator implements Validator {
 
   @Override
   public ValidationError validate(RawTag rawTag, Map<String, RawTag> context) {
-    return Optional.ofNullable(acceptedValues.get(rawTag.tag()))
+    return Optional.ofNullable(acceptedValues.get(rawTag.value()))
         .map(isSupported -> isSupported ? ValidationError.empty()
             : ValidationError.builder().submittedTag(rawTag).error("Message Type is not currently supported!")
                 .build())

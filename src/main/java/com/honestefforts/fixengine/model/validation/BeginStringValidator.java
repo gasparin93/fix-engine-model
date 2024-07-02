@@ -19,19 +19,19 @@ public class BeginStringValidator implements Validator {
 
   @Override
   public ValidationError validate(final RawTag rawTag, final Map<String, RawTag> context) {
-    if(StringUtil.isNullOrEmpty(rawTag.tag())) {
+    if(StringUtil.isNullOrEmpty(rawTag.value())) {
       return ValidationError.builder().critical(true).submittedTag(rawTag)
           .error(Validator.REQUIRED_ERROR_MSG).build();
     }
-    if(!acceptedValues.containsKey(rawTag.tag())) {
+    if(!acceptedValues.containsKey(rawTag.value())) {
       return ValidationError.builder().critical(true).submittedTag(rawTag)
           .error("FIX version is not valid!").build();
     }
-    if(!acceptedValues.get(rawTag.tag())) {
+    if(!acceptedValues.get(rawTag.value())) {
       ValidationError.builder().critical(true).submittedTag(rawTag)
           .error("FIX version is not currently supported!").build();
     }
-    if(!rawTag.version().equals(rawTag.tag())) {
+    if(!rawTag.version().equals(rawTag.value())) {
       return ValidationError.builder()
           .critical(true).submittedTag(rawTag)
           .error("FIX version in message is does not match the indicated version!").build();

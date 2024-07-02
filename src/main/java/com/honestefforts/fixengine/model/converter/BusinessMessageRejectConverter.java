@@ -8,4 +8,7 @@ public class BusinessMessageRejectConverter {
   public static FixMessage convert(Map<String, RawTag> tagMap) {
     return null;
   }
+  public static FixMessage generate(String errorMessage) {
+    return null;
+  };
 }

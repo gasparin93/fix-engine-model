@@ -22,4 +22,5 @@ public class TagValidator {
         .orElse(supportedTags.contains(rawTag.tag()) ? ValidationError.empty() :
             ValidationError.builder().submittedTag(rawTag).error("Unsupported tag").build());
   }
+
 }

@@ -15,7 +15,8 @@ public class ValidationError {
   private final RawTag submittedTag;
   @Builder.Default
   private final boolean critical = false;
-  private boolean empty = false;
+  //@Builder.Default
+  private transient final boolean empty = false;
 
   public boolean hasErrors() {
     return !empty;

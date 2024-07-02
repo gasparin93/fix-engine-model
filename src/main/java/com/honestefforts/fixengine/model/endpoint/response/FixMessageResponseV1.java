@@ -18,7 +18,7 @@ import lombok.extern.jackson.Jacksonized;
 public class FixMessageResponseV1 {
 
   @NonNull
-  List<FixMessage> response;
+  FixMessage response;
 
   Collection<ValidationError> errors;
 }
