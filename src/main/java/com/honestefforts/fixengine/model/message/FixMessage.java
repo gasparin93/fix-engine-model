@@ -1,12 +1,16 @@
 package com.honestefforts.fixengine.model.message;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.experimental.SuperBuilder;
 
-@AllArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
 @SuperBuilder
 public abstract class FixMessage {
+  @NonNull
   private final FixHeader fixHeader;
+
 }

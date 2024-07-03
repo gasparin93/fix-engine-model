@@ -27,6 +27,4 @@ public class NewOrderSingle extends FixMessage {
   @NonNull
   OrderType orderType;
 
-  NewOrderSingleOptionalFields optionalFields;
-
 }
