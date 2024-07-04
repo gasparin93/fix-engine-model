@@ -13,4 +13,8 @@ public abstract class FixMessage {
   @NonNull
   private final FixHeader fixHeader;
 
+  public String getMessageType() {
+    return getFixHeader().getMessageType();
+  }
+
 }
