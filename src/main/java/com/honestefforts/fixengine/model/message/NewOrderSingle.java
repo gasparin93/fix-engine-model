@@ -9,7 +9,7 @@ import com.honestefforts.fixengine.model.message.components.OrderQuantityData;
 import com.honestefforts.fixengine.model.message.components.Parties;
 import com.honestefforts.fixengine.model.message.components.PegInstructions;
 import com.honestefforts.fixengine.model.message.components.SpreadOrBenchmarkCurveData;
-import com.honestefforts.fixengine.model.message.components.StandardTrailer;
+import com.honestefforts.fixengine.model.message.components.MessageTrailer;
 import com.honestefforts.fixengine.model.message.components.Stipulations;
 import com.honestefforts.fixengine.model.message.components.UnderlyingInstrument;
 import com.honestefforts.fixengine.model.message.components.YieldData;
@@ -205,6 +205,6 @@ public class NewOrderSingle extends FixMessage {
   String registrationId;
   /** Tag 494 (Designation) */
   String designation;
-  /** Component block, see {@link StandardTrailer} */
-  StandardTrailer standardTrailer;
+  /** Component block, see {@link MessageTrailer} */
+  MessageTrailer messageTrailer;
 }

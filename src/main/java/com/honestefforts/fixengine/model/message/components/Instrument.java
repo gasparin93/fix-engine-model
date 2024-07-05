@@ -48,7 +48,7 @@ public class Instrument {
   /** Tag 255 (CreditRating) */
   String creditRating;
   /** Tag 543 (InstrRegistry) */
-  String instrRegistry;
+  String instrumentRegistry;
   /** Tag 470 (CountryOfIssue) */
   CountryCode countryOfIssue;
   /** Tag 471 (StateOrProvinceOfIssue) */
@@ -78,7 +78,7 @@ public class Instrument {
   /** Tag 107 (SecurityDesc) */
   String securityDescription;
   /** Tag 350 (EncodedSecurityDescLen) */
-  Integer encodedSecurityDescLength;
+  Integer encodedSecurityDescriptionLength;
   /** Tag 351 (EncodedSecurityDesc) */
   String encodedSecurityDescription;
   /** Tag 691 (Pool) */
