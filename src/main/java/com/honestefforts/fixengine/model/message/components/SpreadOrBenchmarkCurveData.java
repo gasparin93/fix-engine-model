@@ -5,9 +5,11 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.Value;
 import lombok.experimental.FieldDefaults;
 
+/**
+ * Definition on <a href="https://www.onixs.biz/fix-dictionary/4.4/compBlock_SpreadOrBenchmarkCurveData.html">onix</a>
+ */
 @Getter
 @Builder
 @FieldDefaults(makeFinal=true, level=AccessLevel. PRIVATE)

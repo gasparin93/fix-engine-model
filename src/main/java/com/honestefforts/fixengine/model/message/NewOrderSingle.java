@@ -9,7 +9,6 @@ import com.honestefforts.fixengine.model.message.components.OrderQuantityData;
 import com.honestefforts.fixengine.model.message.components.Parties;
 import com.honestefforts.fixengine.model.message.components.PegInstructions;
 import com.honestefforts.fixengine.model.message.components.SpreadOrBenchmarkCurveData;
-import com.honestefforts.fixengine.model.message.components.MessageTrailer;
 import com.honestefforts.fixengine.model.message.components.Stipulations;
 import com.honestefforts.fixengine.model.message.components.UnderlyingInstrument;
 import com.honestefforts.fixengine.model.message.components.YieldData;
@@ -19,18 +18,13 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.util.List;
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.NonNull;
-import lombok.Value;
 import lombok.experimental.FieldDefaults;
 import lombok.experimental.SuperBuilder;
 
 /**
  * Message type D.
- *
  * Definition on <a href="https://www.onixs.biz/fix-dictionary/4.4/msgType_D_68.html">onix</a>
  */
 @Getter
@@ -210,6 +204,4 @@ public class NewOrderSingle extends FixMessage {
   String registrationId;
   /** Tag 494 (Designation) */
   String designation;
-  /** Component block, see {@link MessageTrailer} */
-  MessageTrailer messageTrailer;
 }
