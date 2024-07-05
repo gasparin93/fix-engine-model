@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.honestefforts</groupId>
-	<artifactId>fixengine.model</artifactId>
+	<artifactId>fix-engine-model</artifactId>
 	<version>24.01-SNAPSHOT</version>
-	<name>fixengine.model</name>
+	<name>fix-engine-model</name>
 	<description>FIX Engine Model and Utilities Library</description>
 	<url/>
 	<licenses>
