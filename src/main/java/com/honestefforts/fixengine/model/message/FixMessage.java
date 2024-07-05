@@ -6,9 +6,9 @@ import lombok.Getter;
 import lombok.NonNull;
 import lombok.experimental.SuperBuilder;
 
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
 @SuperBuilder
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public abstract class FixMessage {
   @NonNull
   private final FixHeader fixHeader;

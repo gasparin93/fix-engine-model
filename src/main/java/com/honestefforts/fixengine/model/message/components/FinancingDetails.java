@@ -2,7 +2,17 @@ package com.honestefforts.fixengine.model.message.components;
 
 import com.honestefforts.fixengine.model.universal.Currency;
 import java.time.LocalDate;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Value;
+import lombok.experimental.FieldDefaults;
 
+@Getter
+@Builder
+@FieldDefaults(makeFinal=true, level=AccessLevel. PRIVATE)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class FinancingDetails {
   /** Tag 913 (AgreementDesc) */
   String agreementDesc;

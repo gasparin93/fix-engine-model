@@ -18,9 +18,14 @@ import com.honestefforts.fixengine.model.universal.MarketIdentifierCode;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.util.List;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.Value;
+import lombok.experimental.FieldDefaults;
 import lombok.experimental.SuperBuilder;
 
 /**
@@ -28,9 +33,9 @@ import lombok.experimental.SuperBuilder;
  *
  * Definition on <a href="https://www.onixs.biz/fix-dictionary/4.4/msgType_D_68.html">onix</a>
  */
-@EqualsAndHashCode(callSuper = true)
-@Value
+@Getter
 @SuperBuilder
+@FieldDefaults(makeFinal=true, level=AccessLevel. PRIVATE)
 public class NewOrderSingle extends FixMessage {
   //TODO: move similar fields into components?
   //TODO: may be better to move some of these into Enums for easier validation/conversion

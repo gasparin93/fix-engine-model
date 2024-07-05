@@ -6,13 +6,16 @@ import java.util.Collection;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NonNull;
 import lombok.Value;
+import lombok.experimental.FieldDefaults;
 import lombok.extern.jackson.Jacksonized;
 
-@Value
+@Getter
 @Builder
 @Jacksonized
+@FieldDefaults(makeFinal=true, level=AccessLevel. PRIVATE)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class FixMessageResponseV1 {
 

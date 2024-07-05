@@ -4,15 +4,18 @@ import java.time.Instant;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NonNull;
 import lombok.Value;
+import lombok.experimental.FieldDefaults;
 
 /**
  * Required set of components for all fix messages.
  * Definition in <a href="https://www.onixs.biz/fix-dictionary/4.4/compBlock_StandardHeader.html">onix</a>
  */
-@Value
+@Getter
 @Builder
+@FieldDefaults(makeFinal=true, level=AccessLevel. PRIVATE)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class FixHeader {
   /** Tag 8 (BeginString) */

@@ -5,7 +5,17 @@ import com.honestefforts.fixengine.model.universal.Currency;
 import com.honestefforts.fixengine.model.universal.MarketIdentifierCode;
 import java.time.LocalDate;
 import java.time.YearMonth;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Value;
+import lombok.experimental.FieldDefaults;
 
+@Getter
+@Builder
+@FieldDefaults(makeFinal=true, level=AccessLevel. PRIVATE)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class UnderlyingInstrument {
   //TODO: this is an exact copy of Instrument, except without:
   ///** Tag 691 (Pool) */
