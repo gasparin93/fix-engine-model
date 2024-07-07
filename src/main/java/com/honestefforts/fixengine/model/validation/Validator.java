@@ -12,7 +12,7 @@ public interface Validator {
   ValidationError validate(RawTag rawTag, Map<String, RawTag> context);
 
   String supports();
-  
+
   static ValidationError validateBlankOrNull(RawTag rawTag) {
     return Optional.ofNullable(rawTag.value()).filter(val -> !val.isBlank())
         .map(_ -> ValidationError.empty())
