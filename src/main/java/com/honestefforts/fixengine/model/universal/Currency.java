@@ -1,5 +1,10 @@
 package com.honestefforts.fixengine.model.universal;
 
+import java.util.Arrays;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
 public enum Currency {
   AED,
   AFN,
@@ -169,4 +174,12 @@ public enum Currency {
   ZAR,
   ZMW,
   ZWL;
+
+  private static final Map<String, Currency> lookupMap = Arrays.stream(Currency.values())
+      .collect(Collectors.toMap(Enum::name, Function.identity()));
+
+  public static boolean isAValidCurrency(String strCurrency) {
+    return lookupMap.containsKey(strCurrency);
+  }
+
 }
