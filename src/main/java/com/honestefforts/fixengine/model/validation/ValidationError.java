@@ -22,6 +22,10 @@ public class ValidationError {
     return !empty;
   }
 
+  public boolean isCritical() {
+    return this.critical;
+  }
+
   public static ValidationError empty() {
     return new ValidationError(null, null, false, true);
   }
