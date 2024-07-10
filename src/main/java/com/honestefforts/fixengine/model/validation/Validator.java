@@ -14,7 +14,7 @@ public interface Validator {
   String supports();
 
   static ValidationError validateBlankOrNull(RawTag rawTag) {
-    return Optional.ofNullable(rawTag.value()).filter(val -> !val.isBlank())
+    return Optional.of(rawTag.value()).filter(val -> !val.isBlank())
         .map(_ -> ValidationError.empty())
         .orElse(ValidationError.builder().submittedTag(rawTag).error(EMPTY_OR_NULL_VALUE).build());
   }
