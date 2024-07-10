@@ -27,9 +27,9 @@ public enum TagType {
   POSITIVE_INTEGER(Pattern.compile("^[0-9]+$").asMatchPredicate()),
   /** tagNum */
   POSITIVE_INTEGER_NO_LEADING_ZEROES(Pattern.compile("^[1-9][0-9]*$").asMatchPredicate()),
-  /** float, percentage, price, qty, priceOffset */
+  /** float, percentage, price, qty, amt, priceOffset */
   FLOAT(Pattern.compile("^-?[0-9]+(\\.[0-9]+)?$").asMatchPredicate()),
-  /** same as gloat, but may not be used as strictly, depends on tag */ //TODO: revisit
+  /** same as float, but may not be used as strictly, depends on tag */ //TODO: revisit
   POSITIVE_FLOAT(Pattern.compile("^[0-9]+(\\.[0-9]+)?$").asMatchPredicate()),
   /** dayOfMonth */
   DAY_OF_MONTH(Pattern.compile("^[0-3]?[0-9]$").asMatchPredicate()),
