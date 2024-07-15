@@ -9,6 +9,7 @@ import lombok.experimental.FieldDefaults;
 /**
  * Definition on <a href="https://www.onixs.biz/fix-dictionary/4.4/compBlock_Parties.html">onix</a>
  */
+//TODO: NestedParties is the same thing, reduce to one class
 @Getter
 @Builder
 @FieldDefaults(makeFinal=true, level=AccessLevel. PRIVATE)

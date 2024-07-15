@@ -24,9 +24,9 @@ public class Instrument {
   /** Tag 65 (SymbolSfx) */
   String symbolSfx;
   /** Tag 48 (SecurityID) */
-  String securityID;
+  String securityId;
   /** Tag 22 (SecurityIDSource) */
-  String securityIDSource;
+  String securityIdSource;
   /** Tag 454 (NoSecurityAltID) */
   Integer numberOfAlternativeSecurityIds;
   /** Tag 455 (SecurityAltID) */

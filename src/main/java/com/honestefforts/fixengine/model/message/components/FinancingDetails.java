@@ -19,7 +19,7 @@ public class FinancingDetails {
   /** Tag 913 (AgreementDesc) */
   String agreementDesc;
   /** Tag 914 (AgreementID) */
-  String agreementID;
+  String agreementId;
   /** Tag 915 (AgreementDate) */
   LocalDate agreementDate;
   /** Tag 918 (AgreementCurrency) */
