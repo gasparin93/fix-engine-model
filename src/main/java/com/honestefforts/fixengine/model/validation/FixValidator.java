@@ -4,7 +4,7 @@ import com.honestefforts.fixengine.model.message.tags.RawTag;
 import java.util.Map;
 import java.util.Optional;
 
-public interface Validator {
+public interface FixValidator {
 
   String REQUIRED_ERROR_MSG = "Tag is required!";
   String EMPTY_OR_NULL_VALUE = "Tag value is empty!";

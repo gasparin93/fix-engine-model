@@ -16,6 +16,7 @@ import com.honestefforts.fixengine.model.universal.Currency;
 import com.honestefforts.fixengine.model.universal.MarketIdentifierCode;
 import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -39,7 +40,7 @@ public class NewOrderSingle extends FixMessage {
   /** Tag 54 (Side) */
   @NonNull Character side;
   /** Tag 60 (TransactTime) */
-  @NonNull Instant transactTime;
+  @NonNull LocalDateTime transactTime;
   /** Tag 40 (OrdType) */
   @NonNull Character orderType;
   /** Component block, see {@link Instrument} */
@@ -55,7 +56,7 @@ public class NewOrderSingle extends FixMessage {
   /** Tag 229 (TradeOriginationDate) */
   LocalDate tradeOriginationDate;
   /** Tag 75 (TradeDate) */
-  LocalDate tradeDate = LocalDate.now(); //TODO: this is local market date, handle timezones?
+  LocalDate tradeDate; //TODO: this is local market date, handle timezones?
   /** Tag 1 (Account) */
   String account;
   /** Tag 660 (AcctIDSource) */
@@ -103,7 +104,7 @@ public class NewOrderSingle extends FixMessage {
   /** Tag 100 (ExDestination) */
   MarketIdentifierCode executionDestination;
   /** Tag 386 (NoTradingSessions) */
-  Integer noTradingSessions;
+  Integer numberOfTradingSessions;
   /** Tag 336 (TradingSessionID) */
   String tradingSessionId;
   /** Tag 625 (TradingSessionSubID) */
@@ -147,11 +148,11 @@ public class NewOrderSingle extends FixMessage {
   /** Tag 59 (TimeInForce) */
   Character timeInForce;
   /** Tag 168 (EffectiveTime) */
-  Instant effectiveTime;
+  LocalDateTime effectiveTime;
   /** Tag 432 (ExpireDate) */
   LocalDate expireDate;
   /** Tag 126 (ExpireTime) */
-  Instant expireTime;
+  LocalDateTime expireTime;
   /** Tag 427 (GTBookingInst) */
   Integer gtBookingInst;
   /** Component block, see {@link CommissionData} */
