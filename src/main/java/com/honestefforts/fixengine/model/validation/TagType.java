@@ -1,8 +1,8 @@
 package com.honestefforts.fixengine.model.validation;
 
+import ch.qos.logback.core.util.StringUtil;
 import com.honestefforts.fixengine.model.universal.CountryCode;
 import com.honestefforts.fixengine.model.universal.Currency;
-import java.util.Objects;
 import java.util.function.Predicate;
 import java.util.regex.Pattern;
 import lombok.AllArgsConstructor;
@@ -10,7 +10,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public enum TagType {
   /** data, string, multipleValueString */
-  STRING(Objects::nonNull),
+  STRING(StringUtil::notNullNorEmpty),
   /** char */
   CHARACTER(Pattern.compile("^\\w$").asMatchPredicate()),
   /** country */

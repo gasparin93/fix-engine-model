@@ -1,7 +1,10 @@
 package com.honestefforts.fixengine.model.message.tags;
 
+import static com.honestefforts.fixengine.model.validation.FixValidator.EMPTY_OR_NULL_VALUE;
+
 import com.honestefforts.fixengine.model.validation.TagType;
 import com.honestefforts.fixengine.model.validation.ValidationError;
+import java.util.Optional;
 import lombok.Builder;
 import lombok.NonNull;
 
@@ -14,8 +17,12 @@ public record RawTag(@NonNull String tag, String value, @NonNull TagType dataTyp
   }
 
   public ValidationError errorIfNotCompliant(boolean isCritical) {
-    return isCompliant() ? ValidationError.builder().critical(isCritical).submittedTag(this)
-        .error("Tag violates expected format!").build() : ValidationError.empty();
+    return Optional.ofNullable(value)
+        .map(_ -> isCompliant() ? ValidationError.builder().critical(isCritical).submittedTag(this)
+            .error("Tag violates expected format!").build()
+            : ValidationError.empty())
+        .orElse(ValidationError.builder().critical(isCritical).submittedTag(this)
+            .error(EMPTY_OR_NULL_VALUE).build());
   }
 
 }
