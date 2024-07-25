@@ -1,5 +1,6 @@
 package com.honestefforts.fixengine.model.message.components;
 
+import java.util.List;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,6 +10,7 @@ import lombok.experimental.FieldDefaults;
 /**
  * Definition on <a href="https://www.onixs.biz/fix-dictionary/4.4/compBlock_Parties.html">onix</a>
  */
+//TODO: NestedParties is the same thing, reduce to one class
 @Getter
 @Builder
 @FieldDefaults(makeFinal=true, level=AccessLevel. PRIVATE)
@@ -28,4 +30,9 @@ public class Parties {
   String partySubId;
   /** Tag 803 (PartySubIDType) */
   Integer partySubIdType;
+
+  public static List<String> supportedTags() {
+    return List.of("453","448","447","452","802","523","803");
+  }
+
 }

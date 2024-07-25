@@ -1,6 +1,7 @@
 package com.honestefforts.fixengine.model.message.components;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
+import java.util.List;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,7 +27,7 @@ public class FixHeader {
   /** Tag 34 (MsgSeqNum) */
   @NonNull Integer msgSeqNum;
   /** Tag 52 (SendingTime) */
-  @NonNull Instant sendingTime;
+  @NonNull LocalDateTime sendingTime;
   /** Tag 49 (SenderCompID) */
   @NonNull String senderCompID;
   /** Tag 56 (TargetCompID) */
@@ -40,27 +41,27 @@ public class FixHeader {
   /** Tag 91 (SecureData) */
   String secureData; //should be after secureDataLength, both must be included if one is
   /** Tag 50 (SenderSubID) */
-  String senderSubID;
+  String senderSubId;
   /** Tag 142 (SenderLocationID) */
-  String senderLocationID;
+  String senderLocationId;
   /** Tag 57 (TargetSubID) */
-  String targetSubID;
+  String targetSubId;
   /** Tag 143 (TargetLocationID) */
-  String targetLocationID;
+  String targetLocationId;
   /** Tag 116 (OnBehalfOfSubID) */
-  String onBehalfOfSubID;
+  String onBehalfOfSubId;
   /** Tag 144 (OnBehalfOfLocationID) */
-  String onBehalfOfLocationID;
+  String onBehalfOfLocationId;
   /** Tag 129 (DeliverToSubID) */
-  String deliverToSubID;
+  String deliverToSubId;
   /** Tag 145 (DeliverToLocationID) */
-  String deliverToLocationID;
+  String deliverToLocationId;
   /** Tag 43 (PossDupFlag) */
   Boolean possibleDuplicationFlag; //Y/N
   /** Tag 97 (PossResend) */
   Boolean possibleResend; //Y/N
   /** Tag 122 (OrigSendingTime) */
-  Instant originalSendingTime;
+  LocalDateTime originalSendingTime;
   /** Tag 212 (XmlDataLen) */
   Integer xmlDataLength;
   /** Tag 213 (XmlData) */
@@ -72,10 +73,15 @@ public class FixHeader {
   /** Tag 627 (NoHops) */
   Integer numberOfHops;
   /** Tag 628 (HopCompIDD) */
-  String hopCompID;
+  String hopCompId;
   /** Tag 629 (HopSendingTime) */
-  Instant hopSendingTime;
+  LocalDateTime hopSendingTime;
   /** Tag 630 (HopRefID) */
-  String hopRefID;
+  String hopRefId;
+
+  public static List<String> supportedTags() {
+    return List.of("8","9","35","34","52","49","56","115","128","90","91","50","142","57",
+        "143","116","144","129","145","43","97","122","212","213","347","369","627","628","629","630");
+  }
 
 }

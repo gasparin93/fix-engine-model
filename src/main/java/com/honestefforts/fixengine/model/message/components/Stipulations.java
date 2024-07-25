@@ -1,5 +1,6 @@
 package com.honestefforts.fixengine.model.message.components;
 
+import java.util.List;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,4 +21,9 @@ public class Stipulations {
   String stipulationType;
   /** Tag 234 (StipulationValue) */
   String stipulationValue;
+
+  public static List<String> supportedTags() {
+    return List.of("232","233","234");
+  }
+
 }

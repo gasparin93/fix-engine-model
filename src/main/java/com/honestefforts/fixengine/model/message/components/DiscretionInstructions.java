@@ -1,5 +1,6 @@
 package com.honestefforts.fixengine.model.message.components;
 
+import java.util.List;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -28,5 +29,9 @@ public class DiscretionInstructions {
   Integer discretionRoundDirection;
   /** Tag 846 (DiscretionScope) */
   Integer discretionScope;
+
+  public static List<String> supportedTags() {
+    return List.of("388", "389", "841", "842", "843", "844", "846");
+  }
 
 }

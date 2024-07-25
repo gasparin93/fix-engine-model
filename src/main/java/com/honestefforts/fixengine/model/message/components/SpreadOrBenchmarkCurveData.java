@@ -1,6 +1,7 @@
 package com.honestefforts.fixengine.model.message.components;
 
 import com.honestefforts.fixengine.model.universal.Currency;
+import java.util.List;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -31,4 +32,9 @@ public class SpreadOrBenchmarkCurveData {
   String benchmarkSecurityId;
   /** Tag 761 (BenchmarkSecurityIDSource) */
   String benchmarkSecurityIdSource;
+
+  public static List<String> supportedTags() {
+    return List.of("218","220","221","222","662","663","699","761");
+  }
+
 }

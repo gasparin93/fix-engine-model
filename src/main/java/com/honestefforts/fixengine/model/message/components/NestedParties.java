@@ -1,5 +1,6 @@
 package com.honestefforts.fixengine.model.message.components;
 
+import java.util.List;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -28,4 +29,9 @@ public class NestedParties {
   String nestedPartySubId;
   /** Tag 805 (NestedPartySubIDType) */
   Integer nestedPartySubIdType;
+
+  public static List<String> supportedTags() {
+    return List.of("539","524","525","538","804","805");
+  }
+
 }

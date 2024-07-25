@@ -5,6 +5,9 @@ import com.honestefforts.fixengine.model.universal.Currency;
 import com.honestefforts.fixengine.model.universal.MarketIdentifierCode;
 import java.time.LocalDate;
 import java.time.YearMonth;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -155,4 +158,14 @@ public class UnderlyingInstrument {
   Double underlyingEndValue;
   /** Component block, see {@link UnderlyingStipulations} */
   UnderlyingStipulations underlyingStipulations;
+
+  public static List<String> supportedTags() {
+    List<String> supportedTags = new ArrayList<>(Arrays.asList("311","312","309","305","457","458",
+        "459","462","463","310","763","313","542","241","242","243","244","245","246","256","595",
+        "592","593","594","247","316","941","317","436","435","308","306","362","363","307","364",
+        "365","877","878","318","879","810","882","883","884","885","886"));
+    supportedTags.addAll(UnderlyingStipulations.supportedTags());
+    return supportedTags;
+  }
+
 }

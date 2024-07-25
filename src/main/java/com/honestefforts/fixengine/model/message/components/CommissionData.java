@@ -1,6 +1,7 @@
 package com.honestefforts.fixengine.model.message.components;
 
 import com.honestefforts.fixengine.model.universal.Currency;
+import java.util.List;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,4 +24,8 @@ public class CommissionData {
   Currency commissionCurrency;
   /** Tag 497 (FundRenewWaiv)*/
   Boolean fundRenewCommissionWaived; //TODO: technically this is a char in onix, but functions as bool - revisit
+
+  public static List<String> supportedTags() {
+    return List.of("12", "13", "479", "497");
+  }
 }

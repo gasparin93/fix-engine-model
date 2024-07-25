@@ -1,5 +1,9 @@
 package com.honestefforts.fixengine.model.universal;
 
+import java.util.Arrays;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -266,4 +270,11 @@ public enum CountryCode {
   int digitCode;
   String englishName;
   String frenchName;
+
+  private static final Map<String, CountryCode> lookupMap = Arrays.stream(CountryCode.values())
+      .collect(Collectors.toMap(Enum::name, Function.identity()));
+
+  public static boolean isAValidCountryCode(String strCountryCode) {
+    return lookupMap.containsKey(strCountryCode);
+  }
 }
