@@ -1,6 +1,7 @@
 package com.honestefforts.fixengine.model.message.components;
 
 import java.time.LocalDate;
+import java.util.List;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -27,4 +28,9 @@ public class YieldData {
   Double yieldRedemptionPrice;
   /** Tag 698 (YieldRedemptionPriceType) */
   Integer yieldRedemptionPriceType;
+
+  public static List<String> supportedTags() {
+    return List.of("235","236","701","696","697","698");
+  }
+
 }

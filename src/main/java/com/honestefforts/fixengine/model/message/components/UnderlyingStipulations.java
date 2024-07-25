@@ -1,5 +1,6 @@
 package com.honestefforts.fixengine.model.message.components;
 
+import java.util.List;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,4 +22,9 @@ public class UnderlyingStipulations {
   String underlyingStipulationType;
   /** Tag 889 (UnderlyingStipValue) */
   String underlyingStipulationValue;
+
+  public static List<String> supportedTags() {
+    return List.of("887","888","889");
+  }
+
 }

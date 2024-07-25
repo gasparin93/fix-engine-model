@@ -1,5 +1,6 @@
 package com.honestefforts.fixengine.model.message.components;
 
+import java.util.List;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,4 +23,8 @@ public class FixTrailer {
   Integer signatureLength;
   /** Tag 89 (Signature) */
   String signature;
+
+  public static List<String> supportedTags() {
+    return List.of("10","93","89");
+  }
 }

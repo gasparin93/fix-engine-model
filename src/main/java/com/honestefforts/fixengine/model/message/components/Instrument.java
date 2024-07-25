@@ -5,6 +5,7 @@ import com.honestefforts.fixengine.model.universal.Currency;
 import com.honestefforts.fixengine.model.universal.MarketIdentifierCode;
 import java.time.LocalDate;
 import java.time.YearMonth;
+import java.util.List;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -115,4 +116,12 @@ public class Instrument {
   LocalDate datedDate;
   /** Tag 874 (InterestAccrualDate) */
   LocalDate interestAccrualDate;
+
+  public static List<String> supportedTags() {
+    return List.of("55","65","48","22","454","455","456","460","461","167","762","200",
+        "541","224","225","239","226","227","228","255","543","470","471","472","240","202","947",
+        "206","231","223","207","106","348","349","107","350","351","691","667","875","876","864",
+        "865","866","867","868","873","874");
+  }
+
 }

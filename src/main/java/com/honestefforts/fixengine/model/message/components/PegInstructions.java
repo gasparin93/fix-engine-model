@@ -1,5 +1,6 @@
 package com.honestefforts.fixengine.model.message.components;
 
+import java.util.List;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,4 +27,9 @@ public class PegInstructions {
   Integer pegRoundDirection;
   /** Tag 840 (PegScope) */
   Integer pegScope;
+
+  public static List<String> supportedTags() {
+    return List.of("211","835","836","837","838","840");
+  }
+
 }

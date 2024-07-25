@@ -1,5 +1,6 @@
 package com.honestefforts.fixengine.model.message.components;
 
+import java.util.List;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,4 +25,9 @@ public class OrderQuantityData {
   Character roundingDirection;
   /** Tag 469 (RoundingModulus) */
   Double roundingModulus;
+
+  public static List<String> supportedTags() {
+    return List.of("38","152","516","468","469");
+  }
+
 }

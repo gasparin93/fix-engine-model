@@ -1,6 +1,7 @@
 package com.honestefforts.fixengine.model.message.components;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -77,5 +78,10 @@ public class FixHeader {
   LocalDateTime hopSendingTime;
   /** Tag 630 (HopRefID) */
   String hopRefId;
+
+  public static List<String> supportedTags() {
+    return List.of("8","9","35","34","52","49","56","115","128","90","91","50","142","57",
+        "143","116","144","129","145","43","97","122","212","213","347","369","627","628","629","630");
+  }
 
 }

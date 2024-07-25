@@ -1,5 +1,6 @@
 package com.honestefforts.fixengine.model.message.components;
 
+import java.util.List;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -29,4 +30,9 @@ public class Parties {
   String partySubId;
   /** Tag 803 (PartySubIDType) */
   Integer partySubIdType;
+
+  public static List<String> supportedTags() {
+    return List.of("453","448","447","452","802","523","803");
+  }
+
 }

@@ -2,6 +2,7 @@ package com.honestefforts.fixengine.model.message.components;
 
 import com.honestefforts.fixengine.model.universal.Currency;
 import java.time.LocalDate;
+import java.util.List;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -34,5 +35,9 @@ public class FinancingDetails {
   Integer deliveryType;
   /** Tag 898 (MarginRatio) */
   Double marginRatio;
+
+  public static List<String> supportedTags() {
+    return List.of("913", "914", "915", "918", "788", "916", "917", "919", "898");
+  }
 
 }
