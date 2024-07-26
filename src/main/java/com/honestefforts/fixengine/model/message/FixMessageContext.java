@@ -15,4 +15,10 @@ public record FixMessageContext(Map<String, RawTag> processedMessages, int messa
         .orElse(false);
   }
 
+  public String getValueForTag(String tag) {
+    return Optional.ofNullable(processedMessages.get(tag))
+        .map(RawTag::value)
+        .orElse(null);
+  }
+
 }

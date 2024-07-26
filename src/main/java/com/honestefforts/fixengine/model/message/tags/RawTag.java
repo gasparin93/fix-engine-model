@@ -18,9 +18,9 @@ public record RawTag(@NonNull String tag, String value, @NonNull TagType dataTyp
 
   public ValidationError errorIfNotCompliant(boolean isCritical) {
     return Optional.ofNullable(value)
-        .map(_ -> isCompliant() ? ValidationError.builder().critical(isCritical).submittedTag(this)
-            .error("Tag violates expected format!").build()
-            : ValidationError.empty())
+        .map(_ -> isCompliant() ? ValidationError.empty()
+            : ValidationError.builder().critical(isCritical).submittedTag(this)
+                .error("Tag violates expected format!").build())
         .orElse(ValidationError.builder().critical(isCritical).submittedTag(this)
             .error(EMPTY_OR_NULL_VALUE).build());
   }
