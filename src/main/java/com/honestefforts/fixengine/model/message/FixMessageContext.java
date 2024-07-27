@@ -6,16 +6,16 @@ import java.util.Optional;
 import lombok.Builder;
 
 @Builder
-public record FixMessageContext(Map<String, RawTag> processedMessages, int messageLength,
+public record FixMessageContext(Map<Integer, RawTag> processedMessages, int messageLength,
                                 String messageType) {
 
-  public boolean hasTag(String tag) {
+  public boolean hasTag(Integer tag) {
     return Optional.ofNullable(processedMessages.get(tag))
         .map(rawTag -> rawTag.value() != null)
         .orElse(false);
   }
 
-  public String getValueForTag(String tag) {
+  public String getValueForTag(Integer tag) {
     return Optional.ofNullable(processedMessages.get(tag))
         .map(RawTag::value)
         .orElse(null);

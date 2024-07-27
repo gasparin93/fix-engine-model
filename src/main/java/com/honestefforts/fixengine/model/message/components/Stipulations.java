@@ -22,8 +22,7 @@ public class Stipulations {
   /** Tag 234 (StipulationValue) */
   String stipulationValue;
 
-  public static List<String> supportedTags() {
-    return List.of("232","233","234");
-  }
+  @Getter
+  private static final List<Integer> supportedTags = List.of(232,233,234);
 
 }

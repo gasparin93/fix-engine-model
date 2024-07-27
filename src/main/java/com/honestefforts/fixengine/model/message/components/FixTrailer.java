@@ -24,7 +24,7 @@ public class FixTrailer {
   /** Tag 89 (Signature) */
   String signature;
 
-  public static List<String> supportedTags() {
-    return List.of("10","93","89");
-  }
+  @Getter
+  private static final List<Integer> supportedTags = List.of(10,93,89);
+
 }

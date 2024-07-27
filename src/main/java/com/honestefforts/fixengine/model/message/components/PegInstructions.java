@@ -28,8 +28,7 @@ public class PegInstructions {
   /** Tag 840 (PegScope) */
   Integer pegScope;
 
-  public static List<String> supportedTags() {
-    return List.of("211","835","836","837","838","840");
-  }
+  @Getter
+  private static final List<Integer> supportedTags = List.of(211,835,836,837,838,840);
 
 }

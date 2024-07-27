@@ -25,7 +25,7 @@ public class CommissionData {
   /** Tag 497 (FundRenewWaiv)*/
   Boolean fundRenewCommissionWaived; //TODO: technically this is a char in onix, but functions as bool - revisit
 
-  public static List<String> supportedTags() {
-    return List.of("12", "13", "479", "497");
-  }
+  @Getter
+  private static final List<Integer> supportedTags = List.of(12, 13, 479, 497);
+
 }

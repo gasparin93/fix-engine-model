@@ -33,8 +33,7 @@ public class SpreadOrBenchmarkCurveData {
   /** Tag 761 (BenchmarkSecurityIDSource) */
   String benchmarkSecurityIdSource;
 
-  public static List<String> supportedTags() {
-    return List.of("218","220","221","222","662","663","699","761");
-  }
+  @Getter
+  private static final List<Integer> supportedTags = List.of(218,220,221,222,662,663,699,761);
 
 }

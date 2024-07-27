@@ -26,8 +26,7 @@ public class OrderQuantityData {
   /** Tag 469 (RoundingModulus) */
   Double roundingModulus;
 
-  public static List<String> supportedTags() {
-    return List.of("38","152","516","468","469");
-  }
+  @Getter
+  private static final List<Integer> supportedTags = List.of(38,152,516,468,469);
 
 }

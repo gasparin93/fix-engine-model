@@ -30,8 +30,7 @@ public class NestedParties {
   /** Tag 805 (NestedPartySubIDType) */
   Integer nestedPartySubIdType;
 
-  public static List<String> supportedTags() {
-    return List.of("539","524","525","538","804","805");
-  }
+  @Getter
+  private static final List<Integer> supportedTags = List.of(539,524,525,538,804,805);
 
 }

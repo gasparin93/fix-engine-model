@@ -31,8 +31,7 @@ public class Parties {
   /** Tag 803 (PartySubIDType) */
   Integer partySubIdType;
 
-  public static List<String> supportedTags() {
-    return List.of("453","448","447","452","802","523","803");
-  }
+  @Getter
+  private static final List<Integer> supportedTags = List.of(453,448,447,452,802,523,803);
 
 }
