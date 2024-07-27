@@ -30,8 +30,7 @@ public class DiscretionInstructions {
   /** Tag 846 (DiscretionScope) */
   Integer discretionScope;
 
-  public static List<String> supportedTags() {
-    return List.of("388", "389", "841", "842", "843", "844", "846");
-  }
+  @Getter
+  private static final List<Integer> supportedTags = List.of(388,389,841,842,843,844,846);
 
 }

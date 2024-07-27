@@ -79,9 +79,8 @@ public class FixHeader {
   /** Tag 630 (HopRefID) */
   String hopRefId;
 
-  public static List<String> supportedTags() {
-    return List.of("8","9","35","34","52","49","56","115","128","90","91","50","142","57",
-        "143","116","144","129","145","43","97","122","212","213","347","369","627","628","629","630");
-  }
+  @Getter
+  private static final List<Integer> supportedTags = List.of(8,9,35,34,52,49,56,115,128,90,91,50,142,
+      57, 143,116,144,129,145,43,97,122,212,213,347,369,627,628,629,630);
 
 }

@@ -36,8 +36,8 @@ public class FinancingDetails {
   /** Tag 898 (MarginRatio) */
   Double marginRatio;
 
-  public static List<String> supportedTags() {
-    return List.of("913", "914", "915", "918", "788", "916", "917", "919", "898");
-  }
+  @Getter
+  private static final List<Integer> supportedTags = List.of(913, 914, 915, 918, 788, 916, 917, 919,
+      898);
 
 }

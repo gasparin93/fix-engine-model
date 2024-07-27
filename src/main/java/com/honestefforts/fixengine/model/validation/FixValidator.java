@@ -11,7 +11,7 @@ public interface FixValidator {
 
   ValidationError validate(RawTag rawTag, FixMessageContext context);
 
-  String supports();
+  Integer supports();
 
   static ValidationError validateBlankOrNull(RawTag rawTag) {
     return Optional.of(rawTag.value()).filter(val -> !val.isBlank())

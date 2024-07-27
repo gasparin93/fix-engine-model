@@ -23,8 +23,7 @@ public class UnderlyingStipulations {
   /** Tag 889 (UnderlyingStipValue) */
   String underlyingStipulationValue;
 
-  public static List<String> supportedTags() {
-    return List.of("887","888","889");
-  }
+  @Getter
+  private static final List<Integer> supportedTags = List.of(887,888,889);
 
 }

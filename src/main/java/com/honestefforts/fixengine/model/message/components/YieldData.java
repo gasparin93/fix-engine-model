@@ -29,8 +29,7 @@ public class YieldData {
   /** Tag 698 (YieldRedemptionPriceType) */
   Integer yieldRedemptionPriceType;
 
-  public static List<String> supportedTags() {
-    return List.of("235","236","701","696","697","698");
-  }
+  @Getter
+  private static final List<Integer> supportedTags = List.of(235,236,701,696,697,698);
 
 }
