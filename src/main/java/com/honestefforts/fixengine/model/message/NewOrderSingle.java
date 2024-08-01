@@ -29,10 +29,9 @@ import lombok.experimental.SuperBuilder;
  * Definition on <a href="https://www.onixs.biz/fix-dictionary/4.4/msgType_D_68.html">onix</a>
  */
 @Getter
-@SuperBuilder
+@SuperBuilder(toBuilder = true)
 @FieldDefaults(makeFinal=true, level=AccessLevel. PRIVATE)
 public class NewOrderSingle extends FixMessage {
-  //TODO: move similar fields into components?
   //TODO: may be better to move some of these into Enums for easier validation/conversion
 
   /** Tag 11 (ClOrdID) */
