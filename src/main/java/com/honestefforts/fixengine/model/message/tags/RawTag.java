@@ -8,8 +8,7 @@ import lombok.Builder;
 import lombok.NonNull;
 
 @Builder
-public record RawTag(@NonNull Integer tag, String value, @NonNull TagType dataType,
-                     String version, Integer position) {
+public record RawTag(@NonNull Integer tag, String value, @NonNull TagType dataType, Integer position) {
 
   public boolean isCompliant() {
     return dataType.isCompliant(value);
