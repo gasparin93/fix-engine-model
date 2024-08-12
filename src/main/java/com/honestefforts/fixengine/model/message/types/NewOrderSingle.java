@@ -1,5 +1,6 @@
-package com.honestefforts.fixengine.model.message;
+package com.honestefforts.fixengine.model.message.types;
 
+import com.honestefforts.fixengine.model.message.FixMessage;
 import com.honestefforts.fixengine.model.message.components.CommissionData;
 import com.honestefforts.fixengine.model.message.components.DiscretionInstructions;
 import com.honestefforts.fixengine.model.message.components.FinancingDetails;
@@ -14,7 +15,6 @@ import com.honestefforts.fixengine.model.message.components.UnderlyingInstrument
 import com.honestefforts.fixengine.model.message.components.YieldData;
 import com.honestefforts.fixengine.model.universal.Currency;
 import com.honestefforts.fixengine.model.universal.MarketIdentifierCode;
-import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -29,10 +29,9 @@ import lombok.experimental.SuperBuilder;
  * Definition on <a href="https://www.onixs.biz/fix-dictionary/4.4/msgType_D_68.html">onix</a>
  */
 @Getter
-@SuperBuilder
+@SuperBuilder(toBuilder = true)
 @FieldDefaults(makeFinal=true, level=AccessLevel. PRIVATE)
 public class NewOrderSingle extends FixMessage {
-  //TODO: move similar fields into components?
   //TODO: may be better to move some of these into Enums for easier validation/conversion
 
   /** Tag 11 (ClOrdID) */

@@ -1,4 +1,4 @@
-package com.honestefforts.fixengine.model.validation;
+package com.honestefforts.fixengine.model.message.tags;
 
 import ch.qos.logback.core.util.StringUtil;
 import com.honestefforts.fixengine.model.universal.CountryCode;
@@ -7,6 +7,14 @@ import java.util.function.Predicate;
 import java.util.regex.Pattern;
 import lombok.AllArgsConstructor;
 
+//TODO: handle lists
+
+/**
+ * Enum to handle type-validation and conversion of tags. Required for every RawTag instance.
+ *
+ * Note: enums are parsed and returned as Strings. This is because they cannot be cast as (<EnumType>),
+ *  they need to be cast as EnumType.valueOf - this can be done on the enum-user side.
+ */
 @AllArgsConstructor
 public enum TagType {
   /** data, string, multipleValueString */

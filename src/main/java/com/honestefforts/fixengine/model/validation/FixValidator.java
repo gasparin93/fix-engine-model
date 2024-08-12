@@ -13,6 +13,8 @@ public interface FixValidator {
 
   Integer supports();
 
+  boolean applicableToMessageType(String messageType);
+
   static ValidationError validateBlankOrNull(RawTag rawTag) {
     return Optional.of(rawTag.value()).filter(val -> !val.isBlank())
         .map(_ -> ValidationError.empty())
