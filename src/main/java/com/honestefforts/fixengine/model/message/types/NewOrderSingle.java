@@ -1,5 +1,6 @@
-package com.honestefforts.fixengine.model.message;
+package com.honestefforts.fixengine.model.message.types;
 
+import com.honestefforts.fixengine.model.message.FixMessage;
 import com.honestefforts.fixengine.model.message.components.CommissionData;
 import com.honestefforts.fixengine.model.message.components.DiscretionInstructions;
 import com.honestefforts.fixengine.model.message.components.FinancingDetails;
@@ -14,7 +15,6 @@ import com.honestefforts.fixengine.model.message.components.UnderlyingInstrument
 import com.honestefforts.fixengine.model.message.components.YieldData;
 import com.honestefforts.fixengine.model.universal.Currency;
 import com.honestefforts.fixengine.model.universal.MarketIdentifierCode;
-import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
