@@ -40,6 +40,10 @@ public enum MessageType {
     return lookupMap.containsKey(strMessageType);
   }
 
+  public static MessageType getMessageType(String strMessageType) {
+    return lookupMap.get(strMessageType);
+  }
+
   public record RequiredComponent(String component, List<Integer> supportedTags) {}
 
 }
