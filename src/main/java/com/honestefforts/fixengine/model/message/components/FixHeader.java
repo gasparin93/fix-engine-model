@@ -1,5 +1,6 @@
 package com.honestefforts.fixengine.model.message.components;
 
+import com.honestefforts.fixengine.model.message.enums.MessageType;
 import java.time.LocalDateTime;
 import java.util.List;
 import lombok.AccessLevel;
@@ -23,7 +24,7 @@ public class FixHeader {
   /** Tag 9 (BodyLength) */
   @NonNull Integer bodyLength; //should be position 2
   /** Tag 35 (MsgType) */
-  @NonNull String messageType; //should be position 3
+  @NonNull MessageType messageType; //should be position 3
   /** Tag 34 (MsgSeqNum) */
   @NonNull Integer msgSeqNum;
   /** Tag 52 (SendingTime) */

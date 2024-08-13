@@ -1,6 +1,7 @@
 package com.honestefforts.fixengine.model.validation;
 
 import com.honestefforts.fixengine.model.message.FixMessageContext;
+import com.honestefforts.fixengine.model.message.enums.MessageType;
 import com.honestefforts.fixengine.model.message.tags.RawTag;
 import java.util.Optional;
 
@@ -13,7 +14,7 @@ public interface FixValidator {
 
   Integer supports();
 
-  boolean applicableToMessageType(String messageType);
+  boolean applicableToMessageType(MessageType messageType);
 
   static ValidationError validateBlankOrNull(RawTag rawTag) {
     return Optional.of(rawTag.value()).filter(val -> !val.isBlank())
