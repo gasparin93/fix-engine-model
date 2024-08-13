@@ -18,6 +18,7 @@ import com.honestefforts.fixengine.model.universal.MarketIdentifierCode;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NonNull;
@@ -204,4 +205,7 @@ public class NewOrderSingle extends FixMessage {
   String registrationId;
   /** Tag 494 (Designation) */
   String designation;
+
+  @Getter
+  public static final Set<Integer> requiredTags = Set.of(11, 54, 60, 40);
 }
