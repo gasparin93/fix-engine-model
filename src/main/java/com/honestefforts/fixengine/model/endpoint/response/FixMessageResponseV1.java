@@ -8,7 +8,9 @@ import java.util.Collection;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Builder.Default;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.jackson.Jacksonized;
 
@@ -18,9 +20,11 @@ import lombok.extern.jackson.Jacksonized;
 @JsonInclude(Include.NON_NULL)
 @FieldDefaults(makeFinal=true, level=AccessLevel. PRIVATE)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor
 public class FixMessageResponseV1 {
 
-  FixMessage response;
+  @Default
+  FixMessage response = null;
 
-  Collection<ValidationError> errors;
+  Collection<ValidationError> errors = null;
 }
