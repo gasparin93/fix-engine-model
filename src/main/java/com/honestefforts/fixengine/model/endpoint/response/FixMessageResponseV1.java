@@ -26,5 +26,6 @@ public class FixMessageResponseV1 {
   @Default
   FixMessage response = null;
 
+  @Default
   Collection<ValidationError> errors = null;
 }
